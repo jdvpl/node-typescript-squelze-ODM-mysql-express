@@ -22,4 +22,14 @@ servidor rest con typescript ts-server
   npm i tslint --save-dev
   npm i typescript --save-dev
   ./node_modules/.bin/tslint --init
+
+  npm i express cors dotenv
+  npm i --save-dev @types/express
+```
+
+### orrer proyecto
+
+```
+  tsc
+  node dist/app.js
 ```
