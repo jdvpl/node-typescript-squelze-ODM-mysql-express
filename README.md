@@ -25,6 +25,9 @@ servidor rest con typescript ts-server
 
   npm i express cors dotenv
   npm i --save-dev @types/express
+  npm i nodemon --save-dev
+  npm i --save-dev @types/cors
+  nodemon index.ts 
 ```
 
 ### orrer proyecto
@@ -32,4 +35,6 @@ servidor rest con typescript ts-server
 ```
   tsc --watch
   node dist/app.js
+
+  nodemon index.ts
 ```
