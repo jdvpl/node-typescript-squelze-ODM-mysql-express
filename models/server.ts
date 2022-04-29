@@ -1,6 +1,7 @@
 import express,{Application} from 'express';
 import  userRoutes from '../routes/user.routes';
 import cors from 'cors';
+import db from '../db/config';
 class Server{
 
   private app :Application;
@@ -11,6 +12,8 @@ class Server{
   constructor(){
     this.app = express();
     this.port =process.env.PORT || '8000';
+
+    this.dbConnect();
     // /middlewares
     this.middlewares();
     // /definir rutas
@@ -30,6 +33,15 @@ class Server{
     // carpeta publica
     this.app.use(express.static('public'));
 
+  }
+
+  async dbConnect(){
+    try {
+      await db.authenticate();
+      console.log("db online")
+    } catch (error:any)  {
+      throw new Error( error );
+    }
   }
 
   listen(){

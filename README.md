@@ -14,7 +14,7 @@ servidor rest con typescript ts-server
 
 ```
 
-### crear servidor con typescript
+### crear servidor con typescript e instalaciones
 
 ```
   npm init -y
@@ -27,7 +27,10 @@ servidor rest con typescript ts-server
   npm i --save-dev @types/express
   npm i nodemon --save-dev
   npm i --save-dev @types/cors
-  nodemon index.ts 
+
+  npm install --save sequelize
+  npm install --save mysql2
+  
 ```
 
 ### orrer proyecto
@@ -37,4 +40,11 @@ servidor rest con typescript ts-server
   node dist/app.js
 
   nodemon index.ts
+```
+
+### lista de servicios en mac
+
+```
+  brew services list  
+  brew services stop mariadb
 ```
