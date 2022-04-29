@@ -30,6 +30,6 @@ servidor rest con typescript ts-server
 ### orrer proyecto
 
 ```
-  tsc
+  tsc --watch
   node dist/app.js
 ```
