@@ -12,4 +12,11 @@ export const existeCorreo=async(email='')=>{
       throw new Error(`El Correo ${email} ya existe`);
     }
 }
+export const noExisteId=async(id='')=>{
+    // verificar si el correo existe
+    const noExisteId = await User.findByPk(id);
+    if (!noExisteId){
+      throw new Error(`El Id ${id} no existe`);
+    }
+}
 

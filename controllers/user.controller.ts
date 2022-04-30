@@ -4,39 +4,26 @@ import User from '../models/user';
 
 export const getUsers = async(req:Request,res:Response)=>{
   const status={status:true}
-  const {limit=5, offset=1}=req.query;
+  const {limit=5, from=0}=req.query;
 
   const [total,users]=await Promise.all([
     User.count({where:status}),
-    User.findAll({ offset: Number(offset), limit: Number(limit), where:status, order: [['id', 'DESC']]})
+    User.findAll({ offset: Number(from), limit: Number(limit), where:status, order: [['id', 'DESC']]})
   ])
 
-  res.json({total,users})
+  res.json({total,limit,from,users})
 } 
 
 
 export const getUser = async(req:Request,res:Response)=>{
   const {id} = req.params;
   const user=await User.findByPk(id);
-
-  if(!user){
-    return res.status(404).json({msg: "User not found."});
-  }
   return res.json(user)
 } 
 
 export const saveUser = async(req:Request,res:Response)=>{
-
   const {body} = req;
   try {
-    const existeEmail = await User.findOne({
-      where:{
-        email: body.email
-      }
-    })
-    if(existeEmail){
-      return  res.status(400).json({msg:`Ya existe un usuario con el correo ${body.email}`});
-    }
     const user=await User.create(body);
     res.json(user);
 
@@ -46,17 +33,29 @@ export const saveUser = async(req:Request,res:Response)=>{
   }
 
 } 
-export const updateUser = (req:Request,res:Response)=>{
+export const updateUser = async(req:Request,res:Response)=>{
   const {id} = req.params;
-  res.json({
-    msg: "udate user",
-    id
-  })
+  const {body} = req;
+  try {
+    const user=await User.findByPk(id);
+    await user?.update(body);
+    return res.json(user);
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({msg: "Error updating user."});
+  }
 } 
-export const deleteUser = (req:Request,res:Response)=>{
+export const deleteUser = async(req:Request,res:Response)=>{
   const {id} = req.params;
-  res.json({
-    msg: "delete user",
-    id
-  })
+  const status={status:false};
+  try {
+    const user=await User.findByPk(id);
+    await user?.update(status);
+    return res.json(user);
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({msg: "Error deleting user."});
+  }
 } 
