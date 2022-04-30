@@ -49,3 +49,9 @@ servidor rest con typescript ts-server
   brew services list  
   brew services stop mariadb
 ```
+
+## URL
+
+```
+  https://node-server-api-ts-mysql-jdvpl.herokuapp.com/api/users?limit=20&from=0
+```
