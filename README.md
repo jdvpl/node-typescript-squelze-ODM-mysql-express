@@ -23,7 +23,8 @@ servidor rest con typescript ts-server
   npm i typescript --save-dev
   ./node_modules/.bin/tslint --init
 
-  npm i express cors dotenv
+  npm i express cors dotenv 
+  npm i express-validator
   npm i --save-dev @types/express
   npm i nodemon --save-dev
   npm i --save-dev @types/cors

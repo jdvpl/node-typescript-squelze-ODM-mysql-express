@@ -7,3 +7,7 @@ CREATE TABLE `users` (
   `updatedAt` TIMESTAMP NULL,
    PRIMARY KEY (id)
   );
+
+
+
+  
